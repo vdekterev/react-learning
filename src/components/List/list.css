@@ -1,0 +1,19 @@
+.list-group {
+    border: 1px solid gray;
+    display: grid;
+    width: 300px;
+    border-radius: 8px;
+}
+
+.list-group__item {
+    border-bottom: 1px solid gray;
+    cursor: pointer;
+}
+
+.list-group__item.selected {
+    background-color: blue;
+}
+
+.list-group__item:last-child {
+    border-bottom: 0;
+}
