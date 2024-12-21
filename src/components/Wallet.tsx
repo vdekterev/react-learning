@@ -9,14 +9,14 @@ import { Operation } from '@/types.ts';
 export default function Wallet() {
 	const sampleOperations = [
 		{
-			id: 1,
+			id: '1',
 			title: 'Salary',
 			amount: 5000,
 			operationType: IOperationType.INCOME,
 			date: new Date()
 		},
 		{
-			id: 2,
+			id: '2',
 			title: 'Debt',
 			amount: 2000,
 			operationType: IOperationType.OUTCOME,

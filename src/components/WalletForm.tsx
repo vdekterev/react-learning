@@ -1,7 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import { IOperationType } from '@/enums.ts';
 import { Operation } from '@/types.ts';
 import { z } from 'zod';
+import { v4 as uuidv4 } from 'uuid';
+
 
 interface Props {
 	onAddOperation: (operation: Operation) => void
@@ -58,7 +60,7 @@ export default function WalletForm({ onAddOperation }: Props) {
 		const numAmount = Number(amount);
 		
 		onAddOperation({
-			id: Math.floor(Math.random() * 10000),
+			id: uuidv4(),
 			title: title,
 			amount: numAmount,
 			operationType: operation,

@@ -1,7 +1,7 @@
 import {IOperationType} from '@/enums.ts';
 
 export interface Operation {
-    id: number,
+    id: string,
     title: string,
     amount: number,
     operationType: IOperationType,
