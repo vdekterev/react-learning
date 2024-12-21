@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import WalletForm from '@/components/WalletForm.tsx';
 import WalletOperation from '@/components/WalletOperation.tsx';
 import WalletBalance from '@/components/WalletBalance.tsx';
-import {IOperationType} from '@/enums.ts';
+import { IOperationType } from '@/enums.ts';
 import { Operation } from '@/types.ts';
 
 
