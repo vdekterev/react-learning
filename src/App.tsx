@@ -1,10 +1,10 @@
 import './App.css';
-import ListGroup from '@/components/ListGroup.tsx';
+import Wallet from '@/components/Wallet.tsx';
 
 function App() {
 	return (
 		<>
-			<ListGroup/>
+			<Wallet/>
 		</>
 	);
 
