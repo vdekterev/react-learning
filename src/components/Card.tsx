@@ -1,25 +1,35 @@
 import {ICard} from '@/types.ts';
+import {useNavigate} from 'react-router-dom';
 
 interface Props {
     card: ICard
 }
 
-export default function Card({card}: Props) {
+export default function Card({ card }: Props) {
+
+	const { name, thumbnail_url, tags, total_time_minutes } = card;
+
+	const navigate = useNavigate();
+
+	const navigateToRecipePage = () => {
+		navigate(`/recipe/${card.id}`);
+	};
+
 	return (
-		<div className="card">
+		<div className="card" onClick={navigateToRecipePage}>
 			<img
-				src={card.img}
+				src={ thumbnail_url }
 				alt=""
 			/>
 			<div className="card-content">
-				<h3>{card.title}</h3>
+				<h3>{ name }</h3>
 				<div className="card-info">
-					{card.tags?.map(tag => (
-						<div className="tag" key={tag}>
-							<p>{tag}</p>
+					{tags?.slice(0, 2).map(tag => (
+						<div className="tag" key={tag.id}>
+							<p>{tag.name}</p>
 						</div>
 					))}
-					{card.time && <p className="time-text">{card.time} min</p>}
+					{total_time_minutes > 0 ? <p className="time-text">{total_time_minutes} min</p> : null}
 				</div>
 			</div>
 		</div>
