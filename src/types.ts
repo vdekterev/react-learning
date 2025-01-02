@@ -20,3 +20,19 @@ export interface IRecipeInstruction {
     position: number,
     display_text: string
 }
+
+export interface IRecipeIngredient {
+    id: number,
+    position: number,
+    raw_text: string
+}
+
+export interface IFetchAction {
+    type: ActionEnum,
+    payload?: any
+}
+export enum ActionEnum {
+    FETCH_PROCESS,
+    FETCH_SUCCESSFUL,
+    FETCH_ERROR,
+}

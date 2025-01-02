@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState} from 'react';
+import { useFetchReducer } from '@/hooks/useFetchReducer.ts';
 
 const options = {
 	method: 'GET',
@@ -15,34 +15,29 @@ const options = {
 	}
 };
 
-export function useFetchRecipes(offset=0) {
-	const [recipes, setRecipes] = useState(null);
-	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState(null);
+
+export function useFetchRecipes(offset = 0) {
+	const { state, setLoading, setSuccess, setError } = useFetchReducer();
 
 	if (offset > 0) {
 		options.params.from = offset.toString();
 	}
 
-	const fetchRecipes = async (searchParam:string) => {
-		setLoading(true);
-		setRecipes(null);
-		setError(null);
+	const fetchRecipes = async (searchParam: string) => {
+		setLoading();
 		try {
-			const reqOptions = {...options};
+			const reqOptions = { ...options };
 			if (searchParam) {
 				reqOptions.params.q = searchParam;
 			}
 			const response = await axios.request(reqOptions);
-			setRecipes(response.data.results);
+			setSuccess(response.data.results);
 			return response;
 		} catch (error: any) {
 			console.error(error);
 			setError(error.message);
-		} finally {
-			setLoading(false);
 		}
 	};
 
-	return [fetchRecipes, {data: recipes, loading, error}];
+	return [fetchRecipes, state];
 }

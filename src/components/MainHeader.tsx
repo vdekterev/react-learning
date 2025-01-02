@@ -1,14 +1,19 @@
-import  {useState} from 'react';
-
+import  { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 interface Props {
 	handleSearch: (search: string) => void
 }
 export default function MainHeader({ handleSearch }: Props ) {
-
 	const [search, setSearch] = useState('');
+	const [_, setSearchParams] = useSearchParams();
 
 	const handleClick = () => {
 		handleSearch(search);
+		if (search) {
+			setSearchParams({
+				'search': search
+			});
+		}
 		setSearch('');
 	};
 	return (

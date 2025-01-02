@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { useState} from 'react';
+import { useFetchReducer } from '@/hooks/useFetchReducer.ts';
 
 const options = {
 	method: 'GET',
 	url: 'https://tasty.p.rapidapi.com/recipes/get-more-info',
-	params: {id: 0},
+	params: { id: 0 },
 	headers: {
 		'x-rapidapi-key': 'cfa6fcbabdmsh9200dc53edbc47dp160243jsn0f529d610b82',
 		'x-rapidapi-host': 'tasty.p.rapidapi.com'
@@ -12,30 +12,23 @@ const options = {
 };
 
 export function useFetchOneRecipe() {
-	const [recipe, setRecipe] = useState(null);
-	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState(null);
-
+	const { state, setLoading, setSuccess, setError } = useFetchReducer();
 	const fetchRecipe = async (recipeID: number) => {
-		setLoading(true);
-		setRecipe(null);
-		setError(null);
+		setLoading();
 		try {
 			const reqOptions = {
 				...options,
-				params: {id: recipeID}
+				params: { id: recipeID }
 			};
 
 			const response = await axios.request(reqOptions);
-			setRecipe(response.data);
+			setSuccess(response.data);
 			return response;
 		} catch (error: any) {
 			console.error(error);
 			setError(error.message);
-		} finally {
-			setLoading(false);
 		}
 	};
 
-	return [fetchRecipe, {data: recipe, loading, error}];
+	return [fetchRecipe, state];
 }

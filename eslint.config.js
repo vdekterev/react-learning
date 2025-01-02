@@ -8,7 +8,7 @@ export default tseslint.config(
     {ignores: ['dist']},
     {
         extends: [js.configs.recommended, ...tseslint.configs.recommended],
-        files: ['**/*.{ts,tsx}'],
+        files: ['**/*.{ts,tsx, js, jsx}'],
         languageOptions: {
             ecmaVersion: 2020,
             globals: globals.browser,
@@ -26,7 +26,8 @@ export default tseslint.config(
             'semi': ['error', 'always', {'omitLastInOneLineBlock': false}],
             'comma-dangle': ['error', 'never'],
             quotes: ['error', 'single'],
-            'indent': ['error', 'tab']
+            'indent': ['error', 'tab'],
+            "object-curly-spacing": ["error", "always"]
         },
     },
 )

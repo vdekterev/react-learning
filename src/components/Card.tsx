@@ -1,5 +1,5 @@
-import {ICard} from '@/types.ts';
-import {useNavigate} from 'react-router-dom';
+import { ICard } from '@/types.ts';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
     card: ICard
@@ -7,7 +7,7 @@ interface Props {
 
 interface Tag {
 	id: number,
-	name: string
+	display_name: string
 }
 
 export default function Card({ card }: Props) {
@@ -17,7 +17,7 @@ export default function Card({ card }: Props) {
 	const navigate = useNavigate();
 
 	const navigateToRecipePage = () => {
-		navigate(`/recipe/${card.id}`);
+		navigate(`/recipe/${card.id}/instructions`);
 	};
 
 	return (
@@ -31,7 +31,7 @@ export default function Card({ card }: Props) {
 				<div className="card-info">
 					{tags?.slice(0, 2).map((tag:Tag) => (
 						<div className="tag" key={tag.id}>
-							<p>{tag.name}</p>
+							<p>{tag.display_name}</p>
 						</div>
 					))}
 					{ total_time_minutes &&

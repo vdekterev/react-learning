@@ -1,22 +1,16 @@
-import {IRecipeInstruction} from '@/types.ts';
+import { IRecipeIngredient, IRecipeInstruction } from '@/types.ts';
+import { Outlet } from 'react-router-dom';
 
 interface Props {
     instructions: IRecipeInstruction[],
+	ingredients: IRecipeIngredient[],
     image: string
 }
-export default function RecipeInfo({ instructions, image }:Props) {
+export default function RecipeInfo({ instructions, ingredients, image }:Props) {
 	return (
 		<div className="recipe-info">
 			<div className="recipe-info-container">
-				<div className="recipe-info-header">
-					<h3>INSTRUCTIONS</h3>
-				</div>
-				{instructions.map(instruction => (
-					<div className="recipe-info-content-container" key={instruction.id}>
-						<p className="recipe-step">{instruction.position}</p>
-						<p className="recipe-text">{instruction.display_text}</p>
-					</div>
-				))}
+				<Outlet context={{ instructions, ingredients }}/>
 			</div>
 			<img className="recipe-img" src={image} alt=""/>
 		</div>
