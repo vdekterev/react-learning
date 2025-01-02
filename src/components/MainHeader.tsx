@@ -1,6 +1,16 @@
+import  {useState} from 'react';
 
+interface Props {
+	handleSearch: (search: string) => void
+}
+export default function MainHeader({ handleSearch }: Props ) {
 
-export default function MainHeader() {
+	const [search, setSearch] = useState('');
+
+	const handleClick = () => {
+		handleSearch(search);
+		setSearch('');
+	};
 	return (
 		<header className="main_header">
 			<div className="text-container">
@@ -12,8 +22,13 @@ export default function MainHeader() {
                     Aliquid dolorum esse nihil qui, quia quod sequi sint ut vitae voluptatibus.
 				</p>
 				<div className="header-input-container">
-					<input type="text" placeholder="Find a recipe..."/>
-					<button>Search</button>
+					<input type="text"
+						   value={search}
+						   onChange={(e) => setSearch(e.target.value)}
+						   placeholder="Find a recipe..."
+						   onKeyDown={(e) => e.code === 'Enter' && handleClick()}
+					/>
+					<button onClick={handleClick}>Search</button>
 				</div>
 			</div>
 			<div>
