@@ -1,5 +1,5 @@
 import { Link, useOutletContext, useParams } from 'react-router-dom';
-import { IRecipeIngredient, IRecipeInstruction } from '@/types.ts';
+import { IRecipeIngredient } from '@/types.ts';
 
 export default function Ingredients() {
 	const { id } = useParams();
